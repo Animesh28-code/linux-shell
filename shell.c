@@ -22,7 +22,6 @@ static void printPrompt(void) {
     if (!getcwd(cwd, sizeof(cwd)))
         strcpy(cwd, "?");
 
-    // Colored prompt
     printf("\n\033[1;32m%s@myshell\033[0m:\033[1;34m%s\033[0m$ ",
            user, cwd);
     fflush(stdout);
@@ -65,7 +64,6 @@ static int parsePipe(char *str, char **strpiped) {
     return 0;
 }
 
-// ----------- REDIRECTION SUPPORT -----------
 static void handleRedirection(char **args, int *in_fd, int *out_fd) {
     *in_fd = -1;
     *out_fd = -1;
@@ -166,7 +164,7 @@ static void execPipedWithRedir(char **left, char **right) {
     waitpid(p1, NULL, 0);
     waitpid(p2, NULL, 0);
 }
-// ----------- END REDIRECTION SUPPORT -----------
+
 
 static void openHelp(void) {
     puts("\n*** MY SHELL HELP ***\n"
